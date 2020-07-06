@@ -62,35 +62,35 @@ int main(int argc, char** argv)
 
     
 
-    while(1)
-    {
-        Statement select(session);
-        select << "SELECT Name, Address, Age, Flags FROM Person WHERE Flags != 1",
-            into(person.name),
-            into(person.address),
-            into(person.age),
-            into(person.flags),
-            range(0, 1); //  iterate over result set one row at a time
+    // while(1)
+    // {
+    //     Statement select(session);
+    //     select << "SELECT Name, Address, Age, Flags FROM Person WHERE Flags != 1",
+    //         into(person.name),
+    //         into(person.address),
+    //         into(person.age),
+    //         into(person.flags),
+    //         range(0, 1); //  iterate over result set one row at a time
         
 
-        while (!select.done())
-        {
-            size_t num = select.execute();
-            if(num > 0)
-            {
-                std::cout << person.name << " " << person.address << " " << person.age << " " << person.flags << std::endl;
-                Statement update(session);
-                update << "UPDATE Person SET Flags = 1 WHERE Name=? and Address=? and age=?",
-                    use(person.name),
-                    use(person.address),
-                    use(person.age);
-                update.execute();
+    //     while (!select.done())
+    //     {
+    //         size_t num = select.execute();
+    //         if(num > 0)
+    //         {
+    //             std::cout << person.name << " " << person.address << " " << person.age << " " << person.flags << std::endl;
+    //             Statement update(session);
+    //             update << "UPDATE Person SET Flags = 1 WHERE Name=? and Address=? and age=?",
+    //                 use(person.name),
+    //                 use(person.address),
+    //                 use(person.age);
+    //             update.execute();
 
 
-            }
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
-    }
+    //         }
+    //     }
+    //     std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    // }
 
 
 

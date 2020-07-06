@@ -78,7 +78,7 @@ int main(int argc, char** argv)
     bool try_wait = false;
     while(1)
     {
-        try_wait = result.tryWait(1);
+        try_wait = result.tryWait(100);
         if(try_wait)
         {
             std::cout << "try_wait : " << try_wait << std::endl;
